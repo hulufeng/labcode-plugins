@@ -1,7 +1,7 @@
 {
   "id": "arduino-cli-toolchain",
   "name": "Arduino CLI 工具链",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Arduino 编译/烧录 + 串口日志 + 板卡信息 + 卸载。对齐 TrieCode v0.3.11。",
   "category": "embedded",
   "projectTypes": ["arduino"],
@@ -98,7 +98,13 @@
       "name": "compile",
       "description": "Compile/verify the current sketch. Uses the currently selected board. IMPORTANT: call select_board first so FQBN is set correctly. Missing platform cores auto-install on first compile.",
       "category": "execute",
-      "parameters": { "type": "object", "properties": {}, "required": [] },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "fqbn": { "type": "string", "description": "Optional standard FQBN (e.g. esp32:esp32:esp32); uses selected board if omitted. NOT the display name." },
+          "sketch_path": { "type": "string", "description": "Optional sketch folder name in workspace; uses currently open sketch if omitted" }
+        }
+      },
       "transport": "internal",
       "internal": { "service": "arduinoCli", "method": "compile" }
     },
@@ -106,7 +112,14 @@
       "name": "upload",
       "description": "Compile and upload to the selected board and port. IMPORTANT: call select_board and select_port first. Port will be auto-detected if omitted.",
       "category": "execute",
-      "parameters": { "type": "object", "properties": { "port": { "type": "string", "description": "e.g. COM3; uses selected port if omitted" } } },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "fqbn": { "type": "string", "description": "Optional standard FQBN; uses selected board if omitted" },
+          "port": { "type": "string", "description": "e.g. COM3; uses selected port if omitted" },
+          "sketch_path": { "type": "string", "description": "Optional sketch folder name in workspace" }
+        }
+      },
       "transport": "cli",
       "cli": { "command": "arduino-cli upload -p {port}", "timeoutMs": 120000 }
     },
