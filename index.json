@@ -12,6 +12,7 @@
     "mcu8051-toolchain",
     "openscad-toolchain",
     "plugin-dev",
+    "python-intelligence",
     "stm32-toolchain",
     "wokwi-simulator"
   ]
