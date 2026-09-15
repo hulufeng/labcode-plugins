@@ -1,18 +1,30 @@
 {
   "id": "arduino-cli-toolchain",
   "name": "Arduino CLI 工具链",
-  "version": "1.0.0",
-  "description": "Arduino 编译/烧录工具链。board search/select/install_platform/install_library/compile。",
+  "version": "1.1.0",
+  "description": "Arduino 编译/烧录 + 串口日志（AI 可读后台串口）。对齐 TrieCode。",
   "category": "embedded",
   "projectTypes": ["arduino"],
   "tools": [
-    { "name": "list_platforms", "description": "列出已安装的 Arduino 开发板平台（arduino-cli core list）。", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "list_platforms" } },
-    { "name": "search_boards", "description": "搜索 Arduino 开发板。", "category": "query", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "search_boards" } },
-    { "name": "select_board", "description": "选择 Arduino 开发板（解析 FQBN）。", "category": "modify", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "select_board" } },
-    { "name": "install_platform", "description": "安装开发板平台。", "category": "modify", "parameters": { "type": "object", "properties": { "platform": { "type": "string" } }, "required": ["platform"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "install_platform" } },
-    { "name": "install_library", "description": "安装 Arduino 库。", "category": "modify", "parameters": { "type": "object", "properties": { "name": { "type": "string" } }, "required": ["name"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "install_library" } },
-    { "name": "list_installed_libraries", "description": "列出已安装的库。", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "list_installed_libraries" } },
-    { "name": "search_libraries", "description": "搜索库。", "category": "query", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "search_libraries" } },
-    { "name": "compile", "description": "编译当前 Arduino 项目。", "category": "execute", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "compile" } }
+    { "name": "list_platforms", "description": "列出已安装平台", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "list_platforms" } },
+    { "name": "search_boards", "description": "搜索开发板", "category": "query", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "search_boards" } },
+    { "name": "select_board", "description": "选择开发板", "category": "modify", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "select_board" } },
+    { "name": "install_platform", "description": "安装平台", "category": "modify", "parameters": { "type": "object", "properties": { "platform": { "type": "string" } }, "required": ["platform"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "install_platform" } },
+    { "name": "install_library", "description": "安装库", "category": "modify", "parameters": { "type": "object", "properties": { "name": { "type": "string" } }, "required": ["name"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "install_library" } },
+    { "name": "list_installed_libraries", "description": "列已装库", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "list_installed_libraries" } },
+    { "name": "search_libraries", "description": "搜索库", "category": "query", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "search_libraries" } },
+    { "name": "compile", "description": "编译", "category": "execute", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "compile" } },
+    { "name": "list_ports", "description": "列出串口", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "serialport", "method": "list" } },
+    { "name": "select_port", "description": "选择串口", "category": "modify", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "serialport", "method": "select" } },
+    { "name": "serial_log_open", "description": "后台打开串口监视（AI 可读）", "category": "execute", "parameters": { "type": "object", "properties": { "port": { "type": "string" }, "baud": { "type": "number" } }, "required": ["port"] }, "transport": "internal", "internal": { "service": "serialLog", "method": "open" } },
+    { "name": "serial_log_tail", "description": "读最近串口日志", "category": "query", "parameters": { "type": "object", "properties": { "line": { "type": "number" } }, "required": [] }, "transport": "internal", "internal": { "service": "serialLog", "method": "tail" } },
+    { "name": "serial_grep", "description": "搜串口日志", "category": "query", "parameters": { "type": "object", "properties": { "pattern": { "type": "string" }, "max": { "type": "number" } }, "required": ["pattern"] }, "transport": "internal", "internal": { "service": "serialLog", "method": "grep" } },
+    { "name": "serial_send", "description": "发送数据到串口", "category": "execute", "parameters": { "type": "object", "properties": { "data": { "type": "string" } }, "required": ["data"] }, "transport": "internal", "internal": { "service": "serialLog", "method": "send" } },
+    { "name": "serial_log_close", "description": "关闭串口日志", "category": "execute", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "serialLog", "method": "close" } },
+    { "name": "analyze_crash", "description": "分析串口崩溃日志", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "serialLog", "method": "analyzeCrash" } }
+  ],
+  "skills": [
+    { "name": "烧录前检查", "description": "编译+查板/口确认无误再烧", "prompt": "按顺序：1. read_file 当前源文件查语法错误；2. 确认已 select_board 和 select_port；3. compile 编译通过；4. 向用户确认后 upload；5. 烧完 serial_log_open 打开串口确认运行" },
+    { "name": "串口日志分析", "description": "读后台串口日志并分析", "prompt": "1. serial_log_open 打开串口；2. 让固件跑一会儿；3. serial_log_tail 读最近日志；4. 异常用 serial_grep 定位；5. analyze_crash 查崩溃；6. 完后 serial_log_close" }
   ]
 }
