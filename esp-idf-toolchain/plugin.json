@@ -1,15 +1,16 @@
 {
   "id": "esp-idf-toolchain",
   "name": "ESP-IDF 工具链",
-  "version": "0.1.0",
-  "description": "idf.py build/set_target/flash/monitor/menuconfig。",
+  "version": "0.2.0",
+  "description": "idf.py build/set_target/flash/monitor/menuconfig。自动 source export.ps1。",
   "category": "embedded",
   "projectTypes": ["esp-idf"],
   "tools": [
-    { "name": "build", "description": "idf.py build", "category": "execute", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "cli", "cli": { "command": "idf.py build", "timeoutMs": 600000 } },
-    { "name": "set_target", "description": "设置目标芯片", "category": "modify", "parameters": { "type": "object", "properties": { "target": { "type": "string" } }, "required": ["target"] }, "transport": "cli", "cli": { "command": "idf.py set-target {target}", "timeoutMs": 120000 } },
-    { "name": "flash", "description": "烧录", "category": "execute", "parameters": { "type": "object", "properties": { "port": { "type": "string" } }, "required": ["port"] }, "transport": "cli", "cli": { "command": "idf.py -p {port} flash", "timeoutMs": 300000 } },
-    { "name": "monitor", "description": "串口监视", "category": "execute", "parameters": { "type": "object", "properties": { "port": { "type": "string" } }, "required": ["port"] }, "transport": "cli", "cli": { "command": "idf.py -p {port} monitor", "timeoutMs": 30000 } },
-    { "name": "menuconfig", "description": "Kconfig 配置", "category": "modify", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "cli", "cli": { "command": "idf.py menuconfig", "timeoutMs": 60000 } }
+    { "name": "check", "description": "检查 idf.py 是否可用", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "cli", "cli": { "command": "idf.py --version", "timeoutMs": 15000, "envScript": "C:/Users/Administrator/esp/esp-idf/export.ps1" } },
+    { "name": "build", "description": "idf.py build", "category": "execute", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "cli", "cli": { "command": "idf.py build", "timeoutMs": 600000, "envScript": "C:/Users/Administrator/esp/esp-idf/export.ps1" } },
+    { "name": "set_target", "description": "设置目标芯片", "category": "modify", "parameters": { "type": "object", "properties": { "target": { "type": "string" } }, "required": ["target"] }, "transport": "cli", "cli": { "command": "idf.py set-target {target}", "timeoutMs": 120000, "envScript": "C:/Users/Administrator/esp/esp-idf/export.ps1" } },
+    { "name": "flash", "description": "烧录", "category": "execute", "parameters": { "type": "object", "properties": { "port": { "type": "string" } }, "required": ["port"] }, "transport": "cli", "cli": { "command": "idf.py -p {port} flash", "timeoutMs": 300000, "envScript": "C:/Users/Administrator/esp/esp-idf/export.ps1" } },
+    { "name": "monitor", "description": "串口监视", "category": "execute", "parameters": { "type": "object", "properties": { "port": { "type": "string" } }, "required": ["port"] }, "transport": "cli", "cli": { "command": "idf.py -p {port} monitor", "timeoutMs": 30000, "envScript": "C:/Users/Administrator/esp/esp-idf/export.ps1" } },
+    { "name": "menuconfig", "description": "Kconfig 配置", "category": "modify", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "cli", "cli": { "command": "idf.py menuconfig", "timeoutMs": 60000, "envScript": "C:/Users/Administrator/esp/esp-idf/export.ps1" } }
   ]
 }
