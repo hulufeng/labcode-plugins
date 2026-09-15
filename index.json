@@ -1,0 +1,18 @@
+{
+  "market": "LabCode Official Plugin Market",
+  "version": 1,
+  "updated": "2026-09-15",
+  "plugins": [
+    "arduino-cli-toolchain",
+    "browser-automation",
+    "code-intelligence",
+    "demo-hello",
+    "esp-idf-toolchain",
+    "lceda-integration",
+    "mcu8051-toolchain",
+    "openscad-toolchain",
+    "plugin-dev",
+    "stm32-toolchain",
+    "wokwi-simulator"
+  ]
+}
