@@ -1,0 +1,14 @@
+{
+  "id": "python-intelligence",
+  "name": "Python 代码智能（pylsp）",
+  "version": "0.1.0",
+  "description": "pylsp LSP：定义跳转、引用、符号、hover、自动补全。",
+  "category": "lsp",
+  "tools": [
+    { "name": "status", "description": "pylsp 状态", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "pythonLsp", "method": "status" } },
+    { "name": "go_to_definition", "description": "跳定义", "category": "query", "parameters": { "type": "object", "properties": { "file_path": { "type": "string" }, "line": { "type": "number" }, "col": { "type": "number" } }, "required": ["file_path", "line", "col"] }, "transport": "internal", "internal": { "service": "pythonLsp", "method": "goToDefinition" } },
+    { "name": "references", "description": "找引用", "category": "query", "parameters": { "type": "object", "properties": { "file_path": { "type": "string" }, "line": { "type": "number" }, "col": { "type": "number" } }, "required": ["file_path", "line", "col"] }, "transport": "internal", "internal": { "service": "pythonLsp", "method": "references" } },
+    { "name": "document_symbols", "description": "文档符号", "category": "query", "parameters": { "type": "object", "properties": { "file_path": { "type": "string" } }, "required": ["file_path"] }, "transport": "internal", "internal": { "service": "pythonLsp", "method": "documentSymbols" } },
+    { "name": "hover", "description": "hover", "category": "query", "parameters": { "type": "object", "properties": { "file_path": { "type": "string" }, "line": { "type": "number" }, "col": { "type": "number" } }, "required": ["file_path", "line", "col"] }, "transport": "internal", "internal": { "service": "pythonLsp", "method": "hover" } }
+  ]
+}
