@@ -1,0 +1,12 @@
+{
+  "id": "openscad-toolchain",
+  "name": "OpenSCAD 3D 建模",
+  "version": "0.1.0",
+  "description": ".scad 渲染 STL/PNG。",
+  "category": "cad",
+  "tools": [
+    { "name": "render", "description": "渲染 STL", "category": "execute", "parameters": { "type": "object", "properties": { "input": { "type": "string" }, "output": { "type": "string" } }, "required": ["input"] }, "transport": "cli", "cli": { "command": "openscad -o {output} {input}", "timeoutMs": 120000 } },
+    { "name": "preview", "description": "PNG 预览", "category": "execute", "parameters": { "type": "object", "properties": { "input": { "type": "string" }, "output": { "type": "string" } }, "required": ["input", "output"] }, "transport": "cli", "cli": { "command": "openscad -o {output} --imgsize=1000,1000 {input}", "timeoutMs": 60000 } },
+    { "name": "check_version", "description": "检查 openscad", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "cli", "cli": { "command": "openscad --version", "timeoutMs": 10000 } }
+  ]
+}

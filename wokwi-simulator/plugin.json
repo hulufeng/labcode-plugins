@@ -1,0 +1,12 @@
+{
+  "id": "wokwi-simulator",
+  "name": "Wokwi 在线仿真",
+  "version": "0.1.0",
+  "description": "云仿真引擎，无需硬件。",
+  "category": "simulation",
+  "tools": [
+    { "name": "create_project", "description": "创建仿真项目", "category": "modify", "parameters": { "type": "object", "properties": { "name": { "type": "string" }, "board": { "type": "string" } }, "required": ["name"] }, "transport": "http", "http": { "url": "https://api.wokwi.com/v1/projects", "method": "POST" } },
+    { "name": "upload_firmware", "description": "上传固件", "category": "modify", "parameters": { "type": "object", "properties": { "projectId": { "type": "string" }, "firmware": { "type": "string" } }, "required": ["projectId", "firmware"] }, "transport": "http", "http": { "url": "https://api.wokwi.com/v1/projects/{projectId}/firmware", "method": "POST" } },
+    { "name": "get_serial_output", "description": "串口输出", "category": "query", "parameters": { "type": "object", "properties": { "projectId": { "type": "string" } }, "required": ["projectId"] }, "transport": "http", "http": { "url": "https://api.wokwi.com/v1/projects/{projectId}/serial", "method": "GET" } }
+  ]
+}

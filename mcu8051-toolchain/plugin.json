@@ -1,0 +1,12 @@
+{
+  "id": "mcu8051-toolchain",
+  "name": "8051 MCU 工具链（SDCC+stcgal）",
+  "version": "0.1.0",
+  "description": "SDCC 编译 + stcgal 烧录 STC。",
+  "category": "embedded",
+  "tools": [
+    { "name": "compile", "description": "sdcc 编译 .c 生成 .hex", "category": "execute", "parameters": { "type": "object", "properties": { "source": { "type": "string" } }, "required": ["source"] }, "transport": "cli", "cli": { "command": "sdcc --std-c11 {source}", "timeoutMs": 60000 } },
+    { "name": "flash_stc", "description": "stcgal 烧录", "category": "execute", "parameters": { "type": "object", "properties": { "port": { "type": "string" }, "hex": { "type": "string" } }, "required": ["port", "hex"] }, "transport": "cli", "cli": { "command": "stcgal -P stc89 -p {port} {hex}", "timeoutMs": 120000 } },
+    { "name": "check_version", "description": "检查 sdcc", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "cli", "cli": { "command": "sdcc --version", "timeoutMs": 10000 } }
+  ]
+}

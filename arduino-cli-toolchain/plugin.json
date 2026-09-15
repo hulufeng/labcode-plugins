@@ -1,0 +1,18 @@
+{
+  "id": "arduino-cli-toolchain",
+  "name": "Arduino CLI 工具链",
+  "version": "1.0.0",
+  "description": "Arduino 编译/烧录工具链。board search/select/install_platform/install_library/compile。",
+  "category": "embedded",
+  "projectTypes": ["arduino"],
+  "tools": [
+    { "name": "list_platforms", "description": "列出已安装的 Arduino 开发板平台（arduino-cli core list）。", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "list_platforms" } },
+    { "name": "search_boards", "description": "搜索 Arduino 开发板。", "category": "query", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "search_boards" } },
+    { "name": "select_board", "description": "选择 Arduino 开发板（解析 FQBN）。", "category": "modify", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "select_board" } },
+    { "name": "install_platform", "description": "安装开发板平台。", "category": "modify", "parameters": { "type": "object", "properties": { "platform": { "type": "string" } }, "required": ["platform"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "install_platform" } },
+    { "name": "install_library", "description": "安装 Arduino 库。", "category": "modify", "parameters": { "type": "object", "properties": { "name": { "type": "string" } }, "required": ["name"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "install_library" } },
+    { "name": "list_installed_libraries", "description": "列出已安装的库。", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "list_installed_libraries" } },
+    { "name": "search_libraries", "description": "搜索库。", "category": "query", "parameters": { "type": "object", "properties": { "query": { "type": "string" } }, "required": ["query"] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "search_libraries" } },
+    { "name": "compile", "description": "编译当前 Arduino 项目。", "category": "execute", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "arduinoCli", "method": "compile" } }
+  ]
+}

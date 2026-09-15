@@ -1,0 +1,10 @@
+{
+  "id": "demo-hello",
+  "name": "Demo Hello",
+  "version": "0.1.0",
+  "description": "插件系统验证。",
+  "category": "demo",
+  "tools": [
+    { "name": "ping", "description": "测试插件系统。", "category": "query", "parameters": { "type": "object", "properties": { "message": { "type": "string" } }, "required": [] }, "transport": "internal", "internal": { "service": "demo", "method": "ping" } }
+  ]
+}

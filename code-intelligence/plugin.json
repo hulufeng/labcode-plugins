@@ -1,0 +1,14 @@
+{
+  "id": "code-intelligence",
+  "name": "C/C++ 代码智能（clangd）",
+  "version": "0.1.0",
+  "description": "clangd LSP：定义跳转、引用、符号索引、hover。",
+  "category": "lsp",
+  "tools": [
+    { "name": "status", "description": "clangd 状态", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "internal", "internal": { "service": "clangd", "method": "status" } },
+    { "name": "go_to_definition", "description": "跳定义", "category": "query", "parameters": { "type": "object", "properties": { "file_path": { "type": "string" }, "line": { "type": "number" }, "col": { "type": "number" } }, "required": ["file_path", "line", "col"] }, "transport": "internal", "internal": { "service": "clangd", "method": "goToDefinition" } },
+    { "name": "references", "description": "找引用", "category": "query", "parameters": { "type": "object", "properties": { "file_path": { "type": "string" }, "line": { "type": "number" }, "col": { "type": "number" } }, "required": ["file_path", "line", "col"] }, "transport": "internal", "internal": { "service": "clangd", "method": "references" } },
+    { "name": "document_symbols", "description": "文档符号", "category": "query", "parameters": { "type": "object", "properties": { "file_path": { "type": "string" } }, "required": ["file_path"] }, "transport": "internal", "internal": { "service": "clangd", "method": "documentSymbols" } },
+    { "name": "hover", "description": "hover", "category": "query", "parameters": { "type": "object", "properties": { "file_path": { "type": "string" }, "line": { "type": "number" }, "col": { "type": "number" } }, "required": ["file_path", "line", "col"] }, "transport": "internal", "internal": { "service": "clangd", "method": "hover" } }
+  ]
+}

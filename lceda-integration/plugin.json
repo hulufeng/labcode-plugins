@@ -1,0 +1,11 @@
+{
+  "id": "lceda-integration",
+  "name": "立创EDA 集成",
+  "version": "0.1.0",
+  "description": "原理图/PCB/DRC。",
+  "category": "eda",
+  "tools": [
+    { "name": "open_schematic", "description": "打开原理图", "category": "modify", "parameters": { "type": "object", "properties": { "projectId": { "type": "string" } }, "required": ["projectId"] }, "transport": "http", "http": { "url": "https://lceda.cn/editor?project={projectId}", "method": "GET" } },
+    { "name": "run_drc", "description": "DRC 检查", "category": "query", "parameters": { "type": "object", "properties": { "projectId": { "type": "string" } }, "required": ["projectId"] }, "transport": "http", "http": { "url": "https://easyeda.com/api/pcb/{projectId}/drc", "method": "POST" } }
+  ]
+}

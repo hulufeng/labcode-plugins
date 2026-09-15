@@ -1,0 +1,13 @@
+{
+  "id": "browser-automation",
+  "name": "浏览器自动化（Playwright MCP）",
+  "version": "0.1.0",
+  "description": "通过 MCP 调 Playwright：打开网页、点击、截图。",
+  "category": "automation",
+  "tools": [
+    { "name": "navigate", "description": "打开 URL", "category": "modify", "parameters": { "type": "object", "properties": { "url": { "type": "string" } }, "required": ["url"] }, "transport": "mcp", "mcp": { "server": "playwright", "tool": "browser_navigate" } },
+    { "name": "click", "description": "点击元素", "category": "modify", "parameters": { "type": "object", "properties": { "selector": { "type": "string" } }, "required": ["selector"] }, "transport": "mcp", "mcp": { "server": "playwright", "tool": "browser_click" } },
+    { "name": "screenshot", "description": "截图", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "mcp", "mcp": { "server": "playwright", "tool": "browser_screenshot" } },
+    { "name": "snapshot", "description": "页面可访问性树", "category": "query", "parameters": { "type": "object", "properties": {}, "required": [] }, "transport": "mcp", "mcp": { "server": "playwright", "tool": "browser_snapshot" } }
+  ]
+}

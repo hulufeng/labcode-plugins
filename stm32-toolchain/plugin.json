@@ -1,0 +1,12 @@
+{
+  "id": "stm32-toolchain",
+  "name": "STM32 工具链",
+  "version": "0.1.0",
+  "description": "arm-none-eabi-gcc + CMake + OpenOCD。",
+  "category": "embedded",
+  "tools": [
+    { "name": "cmake_configure", "description": "cmake 配置", "category": "modify", "parameters": { "type": "object", "properties": { "buildDir": { "type": "string" } }, "required": ["buildDir"] }, "transport": "cli", "cli": { "command": "cmake -B {buildDir} -G \"MinGW Makefiles\"", "timeoutMs": 60000 } },
+    { "name": "build", "description": "编译", "category": "execute", "parameters": { "type": "object", "properties": { "buildDir": { "type": "string" } }, "required": ["buildDir"] }, "transport": "cli", "cli": { "command": "cmake --build {buildDir} -j", "timeoutMs": 300000 } },
+    { "name": "flash_openocd", "description": "OpenOCD 烧录", "category": "execute", "parameters": { "type": "object", "properties": { "elf": { "type": "string" }, "interface": { "type": "string" }, "chip": { "type": "string" } }, "required": ["elf"] }, "transport": "cli", "cli": { "command": "openocd -f interface/{interface}.cfg -f target/{chip}.cfg -c \"program {elf} reset exit 0x08000000\"", "timeoutMs": 120000 } }
+  ]
+}
