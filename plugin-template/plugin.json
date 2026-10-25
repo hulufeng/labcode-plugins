@@ -1,0 +1,42 @@
+{
+  "id": "plugin-template",
+  "name": "原创插件模板",
+  "version": "0.1.0",
+  "description": "LabCode 原创插件骨架：照此格式写你自己的工具(tools)与技能(skills)。发布 = 推到 GitHub hulufeng/labcode-plugins 子目录，客户端即自动可装。删除本说明、改 id/name 后即可成为你自己的插件。",
+  "category": "devtools",
+  "icon": "🧩",
+  "tools": [
+    {
+      "name": "echo_args",
+      "description": "示例工具：回显传入参数，验证工具链路是否通。把 cli.command 换成你自己的脚本/程序，它就变成真正的原创工具。",
+      "category": "query",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string", "description": "任意文本参数" }
+        },
+        "required": ["text"]
+      },
+      "transport": "cli",
+      "cli": {
+        "command": "echo [plugin-template] received: {text}",
+        "timeoutMs": 30000
+      }
+    },
+    {
+      "name": "my_internal_tool",
+      "description": "示例：internal 型工具占位（需在 app.js 用 registerInternalService 注册 myService 后才可用）。仅作格式参考，发布前请删掉或实现。",
+      "category": "execute",
+      "parameters": { "type": "object", "properties": {} },
+      "transport": "internal",
+      "internal": { "service": "myService", "method": "run" }
+    }
+  ],
+  "skills": [
+    {
+      "name": "我的第一个技能",
+      "description": "示例技能：这是真正属于你的原创内容——把 prompt 换成你自己的 AI 提示词 / 工作流。",
+      "prompt": "（在此写入你的技能提示词。例如：当用户要 XXX 时，先 YYY，再 ZZZ；遇到错误就 WWW。技能会被注入 AI 上下文，输入框输入 / 即可调用。）"
+    }
+  ]
+}
