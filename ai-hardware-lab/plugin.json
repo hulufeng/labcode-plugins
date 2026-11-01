@@ -1,0 +1,31 @@
+{
+  "id": "ai-hardware-lab",
+  "name": "AI 硬件拆解工坊",
+  "version": "1.0.0",
+  "icon": "🤖",
+  "category": "tool",
+  "description": "一句话描述想做的设备，AI 拆解为：方案概览/模块选型/接线示意/示例代码/组装步骤/避坑提示",
+  "tools": [
+    {
+      "name": "dissect_hardware_idea",
+      "description": "把设备想法拆解为六段可落地手搓方案",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "idea": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "idea"
+        ]
+      },
+      "category": "query",
+      "transport": "internal",
+      "internal": {
+        "service": "hwlab",
+        "method": "dissect"
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "micropython",
+  "name": "MicroPython 支持",
+  "version": "1.1.0",
+  "icon": "🐍",
+  "category": "runtime",
+  "description": "真实 mpremote 执行：REPL 代码运行、软复位（需 pip install mpremote）",
+  "tools": [
+    {
+      "name": "mp_exec",
+      "description": "设备上执行 MicroPython 代码",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "category": "execute",
+      "transport": "internal",
+      "internal": {
+        "service": "mpython",
+        "method": "exec"
+      }
+    },
+    {
+      "name": "mp_reset",
+      "description": "软复位设备",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "category": "execute",
+      "transport": "internal",
+      "internal": {
+        "service": "mpython",
+        "method": "reset"
+      }
+    },
+    {
+      "name": "mp_run",
+      "description": "执行 mpremote 命令",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "args": {
+            "type": "array"
+          }
+        }
+      },
+      "category": "execute",
+      "transport": "internal",
+      "internal": {
+        "service": "mpython",
+        "method": "run"
+      }
+    }
+  ]
+}
