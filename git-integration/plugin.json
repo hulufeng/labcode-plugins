@@ -1,0 +1,99 @@
+{
+  "id": "git-integration",
+  "name": "Git 集成",
+  "version": "1.0.0",
+  "icon": "🌿",
+  "category": "tool",
+  "description": "真实 Git 操作：状态/差异/日志/暂存/提交/分支",
+  "tools": [
+    {
+      "name": "git_status",
+      "description": "查看工作区状态",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "cwd": {
+            "type": "string"
+          }
+        }
+      },
+      "category": "query",
+      "transport": "internal",
+      "internal": {
+        "service": "git",
+        "method": "status"
+      }
+    },
+    {
+      "name": "git_diff",
+      "description": "查看差异",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string"
+          }
+        }
+      },
+      "category": "query",
+      "transport": "internal",
+      "internal": {
+        "service": "git",
+        "method": "diff"
+      }
+    },
+    {
+      "name": "git_log",
+      "description": "提交历史",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "n": {
+            "type": "number"
+          }
+        }
+      },
+      "category": "query",
+      "transport": "internal",
+      "internal": {
+        "service": "git",
+        "method": "log"
+      }
+    },
+    {
+      "name": "git_commit",
+      "description": "暂存并提交",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "category": "execute",
+      "transport": "internal",
+      "internal": {
+        "service": "git",
+        "method": "commit"
+      }
+    },
+    {
+      "name": "git_branches",
+      "description": "分支列表",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "category": "query",
+      "transport": "internal",
+      "internal": {
+        "service": "git",
+        "method": "branches"
+      }
+    }
+  ]
+}

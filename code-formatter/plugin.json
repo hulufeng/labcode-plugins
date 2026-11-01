@@ -1,0 +1,35 @@
+{
+  "id": "code-formatter",
+  "name": "代码格式化",
+  "version": "1.0.0",
+  "icon": "✨",
+  "category": "tool",
+  "description": "JSON 内置；C/C++→clang-format；Python→black（stdin 管道真实执行）",
+  "tools": [
+    {
+      "name": "format_code",
+      "description": "格式化代码（lang: json/c/cpp/python）",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "lang"
+        ]
+      },
+      "category": "modify",
+      "transport": "internal",
+      "internal": {
+        "service": "formatter",
+        "method": "format"
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "themes",
+  "name": "主题扩展",
+  "version": "1.0.0",
+  "icon": "🎨",
+  "category": "theme",
+  "description": "浅色/深色主题真实切换",
+  "tools": [
+    {
+      "name": "list_themes",
+      "description": "列出主题",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      },
+      "category": "query",
+      "transport": "internal",
+      "internal": {
+        "service": "theme",
+        "method": "list"
+      }
+    },
+    {
+      "name": "set_theme",
+      "description": "切换主题",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "theme": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "theme"
+        ]
+      },
+      "category": "execute",
+      "transport": "internal",
+      "internal": {
+        "service": "theme",
+        "method": "set"
+      }
+    }
+  ]
+}
